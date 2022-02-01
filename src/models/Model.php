@@ -43,4 +43,45 @@ class Model {
     public function __set($key, $value) {
         $this->values[$key] = $value;
     }
+
+    /**
+     * Função que gera um sql de select no banco usando filtros e colunas como parametro
+     * @param array $filters
+     * @param string $colums
+     * @return string
+     */
+    public static function getSelect($filters = [], $colums = '*') {
+        $sql = "SELECT ${colums} FROM " . static::$tableName . static::getFilters($filters);
+        return $sql;
+    }
+
+    /**
+     * Função que adiciona o WHERE com base nos filtros enviados no array
+     * @param array $filters
+     * @return string
+     */
+    private static function getFilters($filters) {
+        $sql = '';
+        if(count($filters) > 0) {
+            $sql .= " WHERE 1 = 1";
+            foreach($filters as $column => $value) {
+                $sql .= " AND ${column} = " . static::getFormatedValue($value);
+            }
+        }
+        return $sql;
+    }
+
+    /**
+     * Função que verifica se o valor é uma string e se for, coloca aspas no começo e fim para usar no sql
+     * 
+     */
+    private static function getFormatedValue($value) {
+        if(is_null($value)) {
+            return "null";
+        } elseif(gettype($value) === 'string') {
+            return "'${value}'";
+        } else {
+            return $value;
+        }
+    }
 }

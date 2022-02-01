@@ -17,7 +17,7 @@ while($row = $data->fetch_assoc()) {
 }
 echo "</pre>"; */
 
-$user = new User(['name' => 'Antonio', 'email' => 'dev@syn.com.br']);
+/* $user = new User(['name' => 'Antonio', 'email' => 'dev@syn.com.br']);
 
 echo "<pre>";
 print_r($user);
@@ -25,4 +25,11 @@ echo "</pre>";
 
 echo "<br>";
 $user->email = 'novo@email.com';
-print_r($user->email);
+print_r($user->email); */
+
+
+echo '<br>';
+
+echo User::getSelect(['id' => 1], 'name, email');
+echo '<br>';
+echo User::getSelect(['name' => 'Chaves', 'email' => 'chaves@cod3r.com.br']);
