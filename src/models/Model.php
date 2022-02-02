@@ -45,6 +45,12 @@ class Model {
     }
 
 
+    /**
+     * Função que traz informações com base em filtros e/ou colunas
+     * Retorna as ifnromações como objetos da classe que à chamou.
+     * @param array $filters
+     * @param string $colums
+     */
     public static function get($filters = [], $colums = '*') {
         $objects = [];
         $result = static::getResultSetFromSelect($filters, $colums);
