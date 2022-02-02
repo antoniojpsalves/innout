@@ -44,15 +44,30 @@ class Model {
         $this->values[$key] = $value;
     }
 
+
+    public static function get($filters = [], $colums = '*') {
+        $objects = [];
+        $result = static::getResultSetFromSelect($filters, $colums);
+        if($result) {
+            $class = get_called_class();
+            while($row = $result->fetch_assoc()) {
+                array_push($objects, new $class($row));
+            }
+        }
+        return $objects;
+    }
+
     /**
      * Função que gera um sql de select no banco usando filtros e colunas como parametro
      * @param array $filters
      * @param string $colums
-     * @return string
      */
-    public static function getSelect($filters = [], $colums = '*') {
+    public static function getResultSetFromSelect($filters = [], $colums = '*') {
         $sql = "SELECT ${colums} FROM " . static::$tableName . static::getFilters($filters);
-        return $sql;
+        $result = Database::getResultFromQuery($sql);
+        if($result->num_rows === 0) {
+            return null;
+        } else return $result;
     }
 
     /**

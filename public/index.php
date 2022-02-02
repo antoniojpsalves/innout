@@ -28,8 +28,17 @@ $user->email = 'novo@email.com';
 print_r($user->email); */
 
 
-echo '<br>';
 
-echo User::getSelect(['id' => 1], 'name, email');
-echo '<br>';
-echo User::getSelect(['name' => 'Chaves', 'email' => 'chaves@cod3r.com.br']);
+echo '<pre>';
+print_r(User::get(['name' => 'Chaves'], 'id, name, email'));
+echo '</pre>';
+
+echo '<pre>';
+print_r(User::get([], 'name'));
+echo '</pre>';
+// echo User::getSelect(['name' => 'Chaves', 'email' => 'chaves@cod3r.com.br']);
+
+foreach(User::get([], 'name') as $user){
+    echo $user->name;
+    echo '<br>';
+}
