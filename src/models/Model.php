@@ -47,7 +47,7 @@ class Model {
 
     /**
      * Função que traz informações com base em filtros e/ou colunas
-     * Retorna as ifnromações como objetos da classe que à chamou.
+     * Retorna as informações como objetos da classe que à chamou.
      * @param array $filters
      * @param string $colums
      */
@@ -61,6 +61,19 @@ class Model {
             }
         }
         return $objects;
+    }
+
+
+    /**
+     * Função que traz informações com base em filtros e/ou colunas
+     * Retorna um objeto da classe que à chamou.
+     * @param array $filters
+     * @param string $colums
+     */
+    public static function getOne($filters = [], $colums = '*') {
+        $class = get_called_class();
+        $result = static::getResultSetFromSelect($filters, $colums);
+        return $result ? new $class($result->fetch_assoc()) : null;
     }
 
     /**
