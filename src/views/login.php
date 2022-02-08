@@ -21,6 +21,7 @@
                 <i class="icofont-runner-alt-1 ml-2"></i>
             </div>
             <div class="card-body">
+                <?php include_once(TEMPLATE_PATH . "/messages.php")?>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" value="<?=isset($email) ? $email : ''?>" placeholder="Digite seu email..." autofocus>
