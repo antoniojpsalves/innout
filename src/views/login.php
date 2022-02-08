@@ -23,7 +23,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email..." autofocus>
+                    <input type="email" name="email" id="email" class="form-control" value="<?=isset($email) ? $email : ''?>" placeholder="Digite seu email..." autofocus>
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
