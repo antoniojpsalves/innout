@@ -6,9 +6,17 @@ if($exception) {
     ];
 }
 
+$alertType = '';
+if(isset($message) && $message['type'] == 'error') {
+    $alertType = 'danger';
+} else {
+    $alertType = 'success';
+}
+
+
 if(isset($message)):
 ?>
-    <div class="my-3 alert alert-danger" role="alert">
-        <?= isset($message) ? $message['message'] : ''; ?>
+    <div role="alert" class="my-3 alert alert-<?=$alertType?>">
+        <?=$message['message']?>
     </div>
 <?php endif;

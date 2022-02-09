@@ -10,7 +10,7 @@ if(count($_POST) >0) {
 
     try {
         $user = $login->checkLogin();
-        echo "Usuario {$user->name} logado!";
+        echo "Usuário {$user->name} logado!";
     } catch(AppException $e) {
         $exception = $e;
     }
