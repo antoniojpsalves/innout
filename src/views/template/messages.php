@@ -1,9 +1,16 @@
 <?php
+$errors = [];
+
 if($exception) {
     $message = [
         'type' => 'error',
         'message' => $exception->getMessage()
     ];
+
+    if(get_class($exception) === 'ValidationException') {
+        // die(get_class($exception));
+        $errors = $exception->getErrors();
+    }
 }
 
 $alertType = '';
